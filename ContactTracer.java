@@ -77,6 +77,7 @@ public class ContactTracer {
             // Use the Graph, infected list, and distance to get the result and print the number of
             // exposed individuals.
 
+            sc.close();
         } catch (IOException e) {
             System.err.println("Error reading in the graph: " + e.getMessage());
         }
