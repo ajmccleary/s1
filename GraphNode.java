@@ -33,7 +33,7 @@ public class GraphNode {
         ArrayList<GraphNode> tempList = new ArrayList(); 
         if(depth != 0) { 
             for(int i = 0; i<conList.size(); i++) {
-                tempList.addAll(getPotentialContacts(conList, depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth
+                tempList.addAll(getPotentialContacts(conList, depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
             }
         }
         return tempList;
