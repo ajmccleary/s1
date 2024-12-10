@@ -13,7 +13,7 @@ import java.util.*;
 public class ContactTracer {
     public static final String DEFAULT_NAME = "simple0.input";
 
-    public static HashMap<Integer, GraphNode> funkyMap = new HashMap<Integer, GraphNode>();
+    public static HashMap<String, GraphNode> funkyMap = new HashMap<String, GraphNode>();
 
     public static void main(String[] args) {
         String fileName = DEFAULT_NAME;
@@ -45,7 +45,7 @@ public class ContactTracer {
                 
                 //create newNode to store the id number
                 //map newNode to node number
-                funkyMap.put(i,  new GraphNode(id, i, false));
+                funkyMap.put(id, new GraphNode(id, i, false));
             }
 
             // You will probably want to create an undirected graph G with n nodes
@@ -63,6 +63,7 @@ public class ContactTracer {
                 System.out.println("DEBUG: Contact between " + idA + " and " + idB);
                 // You might want to get the id number of idA and idB from the Hashmap
                 // Then add the edge between idA and idB to the graph
+                funkyMap.get(idA).addNewConnection(funkyMap.get(idB));
             }
 
             // Get how many contacts have been infected and how far to report exposure from
