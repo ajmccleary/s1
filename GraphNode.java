@@ -31,11 +31,11 @@ public class GraphNode {
     public int getNum() {
         return this.nodeNum; 
     }
-    public ArrayList<GraphNode> getConnections() { //BLLLLLLLAHHHHHHHHHHHHHHHHHH
+    public ArrayList<GraphNode> getConnections() {
         return connectedNodes; 
     }
     public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth) {
-        ArrayList<GraphNode> tempList = new ArrayList(); 
+        ArrayList<GraphNode> tempList = new ArrayList<GraphNode>(); 
         if(depth != 0) { 
             for(int i = 0; i<conList.size(); i++) {
                 tempList.addAll(getPotentialContacts(conList, depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
