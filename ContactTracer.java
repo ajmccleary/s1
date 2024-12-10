@@ -43,10 +43,14 @@ public class ContactTracer {
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
                 idMap.put(id, i);
+
+                //create newNode to store the id number
+                GraphNode newNode = new GraphNode(i, false);
             }
 
             // You will probably want to create an undirected graph G with n nodes
             // Initially with no edges but add a method to add an edge between two nodes
+            
 
             // Get the various connections
             int m = Integer.parseInt(sc.nextLine());
