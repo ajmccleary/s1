@@ -12,10 +12,12 @@ public class GraphNode {
     private ArrayList<GraphNode> connectedNodes;
     //private HashMap connectedNodes; 
     private String ID;
+    private int nodeNum;
     private boolean isInfected; 
     public GraphNode(String ID, boolean isInfected) {
         this.ID = ID;
-        this.isInfected = isInfected; 
+        this.nodeNum = nodeNum; 
+        this.isInfected = isInfected;
         //connectedNodes = new HashMap(); 
         connectedNodes = new ArrayList();
     }
@@ -25,6 +27,9 @@ public class GraphNode {
     }
     public String getID() {
         return this.ID; 
+    }
+    public int getNum() {
+        return this.nodeNum; 
     }
     public ArrayList getConnections() {
         return connectedNodes; 
