@@ -14,7 +14,7 @@ public class GraphNode {
     private String ID;
     private int nodeNum;
     private boolean isInfected; 
-    public GraphNode(String ID, boolean isInfected) {
+    public GraphNode(String ID, int nodeNum, boolean isInfected) {
         this.ID = ID;
         this.nodeNum = nodeNum; 
         this.isInfected = isInfected;
