@@ -44,10 +44,8 @@ public class ContactTracer {
                 // Using a Hashmap, I would map ID to i, call it the id number.
                 
                 //create newNode to store the id number
-                GraphNode newNode = new GraphNode(id, i, false);
-
                 //map newNode to node number
-                funkyMap.put(i, newNode);
+                funkyMap.put(i,  new GraphNode(id, i, false));
             }
 
             // You will probably want to create an undirected graph G with n nodes
