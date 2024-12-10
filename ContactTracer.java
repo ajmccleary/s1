@@ -13,7 +13,7 @@ import java.util.*;
 public class ContactTracer {
     public static final String DEFAULT_NAME = "simple0.input";
 
-    public static HashMap<Integer, String> idMap = new HashMap<Integer, String>();
+    public static HashMap<String, Integer> idMap = new HashMap<String, Integer>();
 
     public static void main(String[] args) {
         String fileName = DEFAULT_NAME;
@@ -42,7 +42,7 @@ public class ContactTracer {
 
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
-                idMap.put(i, id);
+                idMap.put(id, i);
             }
 
             // You will probably want to create an undirected graph G with n nodes
