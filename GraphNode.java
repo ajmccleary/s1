@@ -31,10 +31,10 @@ public class GraphNode {
     public int getNum() {
         return this.nodeNum; 
     }
-    public ArrayList<GraphNode> getConnections() {
+    public ArrayList<GraphNode> getConnections() { //BLLLLLLLAHHHHHHHHHHHHHHHHHH
         return connectedNodes; 
     }
-    public ArrayList<GraphNode> getPotentialContacts(ArrayList conList, int depth) {
+    public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth) {
         ArrayList<GraphNode> tempList = new ArrayList(); 
         if(depth != 0) { 
             for(int i = 0; i<conList.size(); i++) {
