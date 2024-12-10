@@ -64,7 +64,11 @@ public class ContactTracer {
                 // You might want to get the id number of idA and idB from the Hashmap
                 // Then add the edge between idA and idB to the graph
                 funkyMap.get(idA).addNewConnection(funkyMap.get(idB));
+                funkyMap.get(idB).addNewConnection(funkyMap.get(idA));
             }
+
+            for (GraphNode test : funkyMap.get("Alice").getPotentialContacts(funkyMap.get("Alice").getConnections(), 2))
+                System.out.println(test.getID());
 
             // Get how many contacts have been infected and how far to report exposure from
             // an infected individual
