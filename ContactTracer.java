@@ -45,7 +45,7 @@ public class ContactTracer {
                 idMap.put(id, i);
 
                 //create newNode to store the id number
-                GraphNode newNode = new GraphNode(i, false);
+                GraphNode newNode = new GraphNode(id, i, false);
             }
 
             // You will probably want to create an undirected graph G with n nodes
