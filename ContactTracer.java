@@ -7,13 +7,13 @@
  * and a distance D, determine how many individuals are with D contacts of an infected individual.
  */
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class ContactTracer {
     public static final String DEFAULT_NAME = "simple0.input";
+
+    public static HashMap<Integer, String> idMap = new HashMap<Integer, String>();
 
     public static void main(String[] args) {
         String fileName = DEFAULT_NAME;
@@ -42,6 +42,7 @@ public class ContactTracer {
 
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
+                idMap.put(i, id);
             }
 
             // You will probably want to create an undirected graph G with n nodes
