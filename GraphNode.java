@@ -29,8 +29,8 @@ public class GraphNode {
     public String getID() {
         return this.ID; 
     }
-    public int getNum() {
-        return this.nodeNum; 
+    public GraphNode getNode(int nodeNum) {
+        return this; 
     }
     public ArrayList<GraphNode> getConnections() {
         return connectedNodes; 
