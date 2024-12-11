@@ -38,7 +38,7 @@ public class ContactTracer {
 
             for (int i = 0; i < n; i++) {
                 String id = sc.nextLine();
-                System.out.println("DEBUG: Node " + i + ": ID=" + id);
+                //System.out.println("DEBUG: Node " + i + ": ID=" + id);
 
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
@@ -60,14 +60,14 @@ public class ContactTracer {
                 String idA = line[0];
                 String idB = line[1];
 
-                System.out.println("DEBUG: Contact between " + idA + " and " + idB);
+                //System.out.println("DEBUG: Contact between " + idA + " and " + idB);
                 // You might want to get the id number of idA and idB from the Hashmap
                 // Then add the edge between idA and idB to the graph
                 funkyMap.get(idA).addNewConnection(funkyMap.get(idB));
                 funkyMap.get(idB).addNewConnection(funkyMap.get(idA));
             }
 
-            for (GraphNode test : funkyMap.get("Alice").getPotentialContacts(funkyMap.get("Alice").getConnections(), 2, new HashSet<>()))
+            for (GraphNode test : funkyMap.get("Alice").getPotentialContacts(funkyMap.get("Alice").getConnections(), 4, new HashSet<>()))
                 System.out.println(test.getID());
 
             // Get how many contacts have been infected and how far to report exposure from

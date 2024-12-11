@@ -35,15 +35,18 @@ public class GraphNode {
     public ArrayList<GraphNode> getConnections() {
         return connectedNodes; 
     }
-    public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth, HashSet<GraphNode> visited) {
-        ArrayList<GraphNode> tempList = new ArrayList<GraphNode>(); 
+    public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth, HashSet<GraphNode> visitedList) {
+        ArrayList<GraphNode> tempList = new ArrayList<GraphNode>();
+
         if(depth > 0) { 
             for(GraphNode node : conList) {
-                if(!visited.contains(node)) {
-                    visited.add(node);
-                    tempList.add(node); 
-                    tempList.addAll(getPotentialContacts(node.getConnections(), depth-1, visited)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
+                if(!visitedList.contains(node)) {
+                    visitedList.add(node);
+                    tempList.add(node);
                 }
+                
+                tempList.addAll(getPotentialContacts(node.getConnections(), depth-1, visitedList)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
+                
             }
         }
         return tempList;
