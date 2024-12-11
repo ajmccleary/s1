@@ -21,6 +21,9 @@ public class ContactTracer {
 
     //keeps track of which nodes already visited
     public static ArrayList<Integer> visitedList = new ArrayList<Integer>();
+
+    //keeps track of number of sickos
+    public static int sickos = 0;
  
     public static void main(String[] args) {
         String fileName = DEFAULT_NAME;
@@ -40,9 +43,12 @@ public class ContactTracer {
             // Open up the file for parsing
             Scanner sc = new Scanner(new FileReader(fileName));
  
+            //add patient 0 to idMap for future usage
+            idMap.put("OG", -1);
+
             // Get the number of names (IDs)
             int n = Integer.parseInt(sc.nextLine());
- 
+
             for (int i = 0; i < n; i++) {
                 String id = sc.nextLine();
                 //System.out.println("DEBUG: Node " + i + ": ID=" + id);
@@ -81,13 +87,23 @@ public class ContactTracer {
                 String idA = sc.nextLine();
                 System.out.println("DEBUG: Infected: " + idA);
                 infected.add(idA);
+
+                //add both infecteds as contacts of patient 0
+                graphMap.get(idMap.get("OG")).add(idMap.get(idA));
             }
  
             // Now process the information to get the results...
             // Use the Graph, infected list, and distance to get the result and print the number of
-            // exposed individuals.
+            // exposed individuals.            
 
-            
+            for (int runs = 0; runs <= distance; runs++) { //for depth
+                for (int contact : graphMap.get(idMap.get("OG"))) { //for each contact of patient 0
+                    if (!visitedList.contains(contact)) {
+                        visitedList.add(contact);
+                        sickos++;
+                    }
+                }
+            }
 
             sc.close();
  
