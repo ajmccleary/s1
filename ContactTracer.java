@@ -67,7 +67,7 @@ public class ContactTracer {
                 funkyMap.get(idB).addNewConnection(funkyMap.get(idA));
             }
 
-            for (GraphNode test : funkyMap.get("Alice").getPotentialContacts(funkyMap.get("Alice").getConnections(), 2))
+            for (GraphNode test : funkyMap.get("Alice").getPotentialContacts(funkyMap.get("Alice").getConnections(), 2, new HashSet<>()))
                 System.out.println(test.getID());
 
             // Get how many contacts have been infected and how far to report exposure from
