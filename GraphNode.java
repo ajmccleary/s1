@@ -7,6 +7,7 @@
  */
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class GraphNode {
     private ArrayList<GraphNode> connectedNodes;
@@ -34,11 +35,15 @@ public class GraphNode {
     public ArrayList<GraphNode> getConnections() {
         return connectedNodes; 
     }
-    public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth) {
+    public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth, HashSet<GraphNode> visited) {
         ArrayList<GraphNode> tempList = new ArrayList<GraphNode>(); 
         if(depth > 0) { 
             for(GraphNode node : conList) {
-                tempList.addAll(getPotentialContacts(node.getConnections(), depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
+                if(!visited.contains(node)) {
+                    visited.add(node);
+                    tempList.add(node); 
+                    tempList.addAll(getPotentialContacts(node.getConnections(), depth-1, visited)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
+                }
             }
         }
         return tempList;
