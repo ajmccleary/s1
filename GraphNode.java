@@ -19,7 +19,7 @@ public class GraphNode {
         this.nodeNum = nodeNum; 
         this.isInfected = isInfected;
         //connectedNodes = new HashMap(); 
-        connectedNodes = new ArrayList();
+        connectedNodes = new ArrayList<GraphNode>();
     }
     public void addNewConnection(GraphNode node/* , int d*/) {
         //connectedNodes.put(node, d);
@@ -36,9 +36,9 @@ public class GraphNode {
     }
     public ArrayList<GraphNode> getPotentialContacts(ArrayList<GraphNode> conList, int depth) {
         ArrayList<GraphNode> tempList = new ArrayList<GraphNode>(); 
-        if(depth != 0) { 
-            for(int i = 0; i<conList.size(); i++) {
-                tempList.addAll(getPotentialContacts(tempList, depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
+        if(depth > 0) { 
+            for(GraphNode node : conList) {
+                tempList.addAll(getPotentialContacts(node.getConnections(), depth-1)); //Goes through each connected nodes connected peoples lists, checking down to the necessary depth, then appends the arraylist onto the current arraylist, keeps sending that up the chain until completed
             }
         }
         return tempList;
