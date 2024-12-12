@@ -20,7 +20,7 @@ public class ContactTracer {
     public static HashMap<Integer, ArrayList<Integer>> graphMap = new HashMap<Integer, ArrayList<Integer>>();
 
     //keeps track of which nodes already visited
-    public static ArrayList<Integer> visitedList = new ArrayList<Integer>();
+    public static HashSet<Integer> visitedList = new HashSet<Integer>();
 
     //keeps track of number of sickos
     public static int sickos = 0;
@@ -43,8 +43,9 @@ public class ContactTracer {
             // Open up the file for parsing
             Scanner sc = new Scanner(new FileReader(fileName));
  
-            //add patient 0 to idMap for future usage
+            //add patient 0 to idMap and graphMap for future usage
             idMap.put("OG", -1);
+            graphMap.put(-1, new ArrayList<Integer>());
 
             // Get the number of names (IDs)
             int n = Integer.parseInt(sc.nextLine());
@@ -56,11 +57,14 @@ public class ContactTracer {
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
                 idMap.put(id, i);
+
+                //initialize storage method for each index in graphMap
+                graphMap.put(i, new ArrayList<Integer>());
             }
  
             // You will probably want to create an undirected graph G with n nodes
             // Initially with no edges but add a method to add an edge between two nodes
- 
+
             // Get the various connections
             int m = Integer.parseInt(sc.nextLine());
  
@@ -96,20 +100,35 @@ public class ContactTracer {
             // Use the Graph, infected list, and distance to get the result and print the number of
             // exposed individuals.            
 
-            for (int runs = 0; runs <= distance; runs++) { //for depth
-                for (int contact : graphMap.get(idMap.get("OG"))) { //for each contact of patient 0
-                    if (!visitedList.contains(contact)) {
-                        visitedList.add(contact);
-                        sickos++;
+            //initialize queue required for breadth first search
+            Queue<Integer> queue = new LinkedList<Integer>();
+            queue.add(idMap.get("OG"));
+            visitedList.add(idMap.get("OG"));
+
+            for (int runs = 0; runs <= distance; runs++) { //numbers of runs less than depth
+                int levelSize = queue.size(); //levelSize is number of people in queue from previous runs
+
+                for (int count = 0; count < levelSize; count++) { //loop through amount of people in queue from this level
+                    int currentPerson = queue.poll(); //update current person to next contact
+
+                    for (int contact : graphMap.get(currentPerson)) { //for each contact of currentPerson
+                        if (!visitedList.contains(contact)) { //check if contact has not been visited
+                            visitedList.add(contact);
+                            queue.add(contact);
+                            sickos++;
+                        }
                     }
                 }
             }
 
+            //output number of infected people
+            System.out.println("Total infected: " + sickos);
+
             sc.close();
  
-         } catch (IOException e) {
-             System.err.println("Error reading in the graph: " + e.getMessage());
-         }
-     }
- }
+        } catch (IOException e) {
+            System.err.println("Error reading in the graph: " + e.getMessage());
+        }
+    }
+}
  
