@@ -89,7 +89,7 @@ public class ContactTracer {
             ArrayList<String> infected = new ArrayList<String>(numInfected);
             for (int c = 0; c < numInfected; c++) {
                 String idA = sc.nextLine();
-                System.out.println("DEBUG: Infected: " + idA);
+                //System.out.println("DEBUG: Infected: " + idA);
                 infected.add(idA);
 
                 //add both infecteds as contacts of patient 0
@@ -102,6 +102,8 @@ public class ContactTracer {
 
             //initialize queue required for breadth first search
             Queue<Integer> queue = new LinkedList<Integer>();
+
+            //add patient zero to queue
             queue.add(idMap.get("OG"));
             visitedList.add(idMap.get("OG"));
 
@@ -122,7 +124,7 @@ public class ContactTracer {
             }
 
             //output number of infected people
-            System.out.println("Total infected: " + sickos);
+            System.out.println(sickos);
 
             sc.close();
  
